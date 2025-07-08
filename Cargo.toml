@@ -2,6 +2,15 @@
 name = "my_rust_sandbox_2025"
 version = "0.1.0"
 edition = "2024"
+authors = ["tomo-4z-echo<tomohiro.takasaki@4zws.com>"]
+description = "A repository for testing and experimentation in Rust."
+license = "ISC"
+repository = "https://github.com/tomo-4z-echo/my-rust-sandbox-2025.git"
 
 [dependencies]
 rand = "0.9.0"
+
+[lib]
+# lib.rs: ライブラリクレートのエンドポイントを明示的に指定します
+# 通常 src/lib.rs に配置された場合はこのセクションを明示的にしなくてもCargoは自動的にライブラリとして認識します
+path = "src/lib.rs"
