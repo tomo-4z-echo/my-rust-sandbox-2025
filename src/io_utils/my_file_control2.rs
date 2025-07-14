@@ -23,7 +23,7 @@ pub fn read_from_file(filename: &str) -> Result<String, String> {
     let mut file = match File.open(filename) {
         Ok(f) => f,
         Err(e) => return Err(format!("ファイルオープンエラー: {}", e)),
-    }
+    };
     // ファイルの内容をString型にして戻す --- String型contentにファイルの内容を書き込む
     let mut content = String::new();
     match file.read_to_string(&mut content) {

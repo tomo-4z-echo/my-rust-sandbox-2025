@@ -1,8 +1,8 @@
 // lib.rsで定義したモジュールをインポート
 use my_rust_sandbox_2025::io_utils::my_file_control3::{write_to_file, read_from_file};
+// use my_rust_sandbox_2025::calc::division::{division};
+use my_rust_sandbox_2025::guess_game::guess_game1::{guess};
 // 標準クレート
-use rand::Rng;
-use std::cmp::Ordering;
 use std::io;
 
 // 数値を2倍にする関数
@@ -12,7 +12,7 @@ fn double_value(num: &mut i32) {
 }
 
 // ベクター（動的配列）の要素を可変参照を使って変更する例
-fn add_prefix_to_strings(strings: &mut Vec<String>, prefix: &str) {
+fn add_prefix_to_strings(strings: &mut [String], prefix: &str) {
     for s in strings.iter_mut() {
         s.insert_str(0, prefix);
     }
@@ -47,21 +47,21 @@ fn main() {
     // ファイル書き込みテスト
     println!("--- Read File ---");
     match write_to_file(filename, &content_to_write) {
-        Ok(()) => println!("ファイル '{}' に正常に書き込みました。", filename),
-        Err(e) => eprintln!("ファイル書き込みエラー: {}", e),   // エラーはstderrに出力する。
+        Ok(()) => println!("ファイル '{filename}' に正常に書き込みました。"),
+        Err(e) => eprintln!("ファイル書き込みエラー: {e}"),   // エラーはstderrに出力する。
     }
     // ファイル読み込みテスト
     println!("--- Write File ---");
     match read_from_file(filename) {
-        Ok(content) => println!("ファイル '{}' から読み込んだ内容: '{}'", filename, content),
-        Err(e) => eprintln!("ファイル削除エラー: {}", e),
+        Ok(content) => println!("ファイル '{filename}' から読み込んだ内容: '{content}'"),
+        Err(e) => eprintln!("ファイル削除エラー: {e}"),
     }
 
     // 2倍にする
     let mut x = 10;
-    println!("変更前: {}", x);
+    println!("変更前: {x}");
     double_value(&mut x);
-    println!("変更後: {}", x);
+    println!("変更後: {x}");
 
     // 配列の中にある文字列の先頭に文字を追加する
     let mut my_strings = vec![
@@ -69,9 +69,9 @@ fn main() {
         String::from("banana"),
         String::from("cherry"),
     ];
-    println!("変更前: {:?}", my_strings);
+    println!("変更前: {my_strings:?}");
     add_prefix_to_strings(&mut my_strings, "super_");
-    println!("変更後: {:?}", my_strings);
+    println!("変更後: {my_strings:?}");
 
     // User構造体のアクティブ状態を変更する
     let mut user1 = User {
@@ -83,33 +83,6 @@ fn main() {
     deactivate_user(&mut user1);
     println!("変更後: {} はアクティブ: {} / 年齢: {}", user1.name, user1.active, user1.age);
 
-    // message
-    println!("Guess the number!");
-    let secret_number = rand::rng().random_range(1..=100);
-    println!("The secret number is : {}", secret_number);
-
-    loop {
-        println!("Please input your guess.");
-        let mut guess = String::new();
-        
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
-        
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-    
-        println!("Your guessed: {}", guess);
-    
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too big!"),
-            Ordering::Equal => {
-                println!("You win!");
-                break;
-            }
-        }
-    }
+    // 数字当てゲーム（guess_gameモジュールから導入）
+    guess();
 }
