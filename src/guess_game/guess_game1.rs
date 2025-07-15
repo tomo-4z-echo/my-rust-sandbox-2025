@@ -20,6 +20,9 @@ use std::cmp::Ordering;
 fn get_guess() -> Option<u32> {
     println!("1~100までの数値を入力してください・・・");
     // 入力プロンプトの直後にフラッシュしてすぐに表示させるようにする
+    // 多くの言語の標準出力はバッファリングをしていてメモリの一時的領域（バッファ）に貯められます。
+    // バッファがいっぱいになったときや改行が行われたときに出力デバイスに書き込まれます。
+    // ここでは、println!が使用されて改行がされているのでflushは必要ないけどテストで書いています。
     match io::stdout().flush() {
         Ok(_) => {},
         Err(e) => {
@@ -52,6 +55,8 @@ pub fn guess() {
     println!("--- 数字当てゲーム ---");
     // コンピューター側の数値
     let secret_number = rand::rng().random_range(1..=100);
+    // 解答表示（デバッグ用）
+    println!("解答: {secret_number}");
     // 正解が出るまで繰り返す
     loop {
         let guess = match get_guess() {

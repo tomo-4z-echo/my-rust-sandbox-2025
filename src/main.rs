@@ -2,6 +2,7 @@
 use my_rust_sandbox_2025::io_utils::my_file_control3::{write_to_file, read_from_file};
 // use my_rust_sandbox_2025::calc::division::{division};
 use my_rust_sandbox_2025::guess_game::guess_game1::{guess};
+use my_rust_sandbox_2025::calc::fizzbuzz::{fizzbuzz, vowel_and_consonant};
 // 標準クレート
 use std::io;
 
@@ -85,4 +86,10 @@ fn main() {
 
     // 数字当てゲーム（guess_gameモジュールから導入）
     guess();
+
+    // Fizzbuzz問題
+    fizzbuzz();
+
+    // 母音子音表示
+    vowel_and_consonant();
 }
