@@ -4,3 +4,5 @@ pub mod io_utils;
 pub mod calc;
 // guess_gameディレクトリをモジュールとして宣言
 pub mod guess_game;
+// structureディレクトリをモジュールとして宣言
+pub mod structure;

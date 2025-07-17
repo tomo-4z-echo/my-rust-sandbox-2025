@@ -13,7 +13,7 @@ pub fn write_to_file(filepath: &str, text: &str) -> Result<(), String> {
     //     Ok(_) => Ok(()),
     //     Err(e) => Err(format!("ファイル書き込みエラー: {}", e)),
     // }
-    file.write_all(text.as_bytes()).map_err(|e|, format!("ファイル書き込みエラー: {}", e))?;
+    file.write_all(text.as_bytes()).map_err(|e| format!("ファイル書き込みエラー: {}", e))?;
 
     Ok(())
 }
