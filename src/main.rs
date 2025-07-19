@@ -1,7 +1,7 @@
 // lib.rsで定義したモジュールをインポート
 use my_rust_sandbox_2025::io_utils::my_file_control4::writing_and_reading_example;
 // use my_rust_sandbox_2025::calc::division::{division};
-use my_rust_sandbox_2025::guess_game::guess_game3::{guess};
+use my_rust_sandbox_2025::guess_game::guess_game5::{guess};
 use my_rust_sandbox_2025::calc::fizzbuzz::{fizzbuzz, vowel_and_consonant};
 use my_rust_sandbox_2025::calc::calc_lib::{calc_example};
 use my_rust_sandbox_2025::structure::rectangle::{Rectangle};
